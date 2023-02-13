@@ -1,0 +1,19 @@
+spring:
+  cassandra:
+    request:
+      timeout: 10s
+    connection:
+      init-query-timeout: 10s
+      connect-timeout: 10s
+    keyspace-name: mynikeruns
+    username:
+    password:
+    schema-action: create-if-not-exists
+datastax.astra:
+  secure-connect-bundle: secure-connect-mynikeruns.zip
+astra.db:
+  id:
+  region: us-east1
+  keyspace: mynikeruns
+  application.token:
+
