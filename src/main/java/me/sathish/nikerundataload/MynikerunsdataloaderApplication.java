@@ -23,4 +23,5 @@ public class MynikerunsdataloaderApplication {
         Path bundle= astraProps.getSecureConnectBundle().toPath();
         return cqlSessionBuilder -> cqlSessionBuilder.withCloudSecureConnectBundle(bundle);
     }
+
 }
