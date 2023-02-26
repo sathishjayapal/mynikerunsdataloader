@@ -2,13 +2,15 @@ package me.sathish.nikerundataload.loader;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
-import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
-import org.springframework.test.context.junit4.SpringRunner;
 
-import static org.junit.jupiter.api.Assertions.*;
+import java.util.List;
+import java.util.Optional;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @ExtendWith(SpringExtension.class)
 @SpringBootTest
@@ -18,7 +20,13 @@ class NikeActivityParserTest {
 
     @Test
     void testReadFromFile() {
-        String str = activityParser.readFromFile();
-        assertTrue(1 == 1);
+        Optional<String> str = activityParser.readFromFile();
+        assertEquals(1, 1);
+    }
+
+    @Test
+    void testParseJSONData() {
+        List list = activityParser.parseJSONData();
+        assertTrue(list.size() > 0);
     }
 }

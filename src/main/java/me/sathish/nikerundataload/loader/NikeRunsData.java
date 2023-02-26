@@ -1,5 +1,6 @@
 package me.sathish.nikerundataload.loader;
 
+import lombok.Data;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.cassandra.core.cql.PrimaryKeyType;
 import org.springframework.data.cassandra.core.mapping.CassandraType;
@@ -8,6 +9,8 @@ import org.springframework.data.cassandra.core.mapping.PrimaryKeyColumn;
 import org.springframework.data.cassandra.core.mapping.Table;
 
 //@javax.persistence.Entity
+
+@Data
 @Table(value = "nikerunsloader")
 public class NikeRunsData {
 
@@ -17,35 +20,13 @@ public class NikeRunsData {
     @Column("run_name")
     @CassandraType(type = CassandraType.Name.TEXT)
     private String name;
+    @Column("start_time")
+    @CassandraType(type = CassandraType.Name.BIGINT)
+    private Long start_time;
+    @Column("end_time")
+    @CassandraType(type = CassandraType.Name.BIGINT)
+    private Long end_time;
 
     public NikeRunsData() {
-    }
-
-    public NikeRunsData(String name) {
-        this.name = name;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    @Override
-    public String toString() {
-        return "NikeRunsData{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                '}';
     }
 }
