@@ -8,14 +8,22 @@ spring:
     keyspace-name: mynikeruns
     username:
     password:
-    schema-action: create-if-not-exists
+    schema-action: create_if_not_exists
+  data:
+    mongodb:
+      host:
+      username:
+      password:
+      port:
+      database: runningfiles
+      uri: mongodb+srv://"+username+ ":"+password+"@cluster0.zh2tzbk.mongodb.net/?retryWrites=true&w=majority
 datastax.astra:
   secure-connect-bundle: secure-connect-mynikeruns.zip
 nikerun:
   defaultFile: /Volumes/MacProHD/intellijworkspaces/iAC-NikeRuns/iAC-NikeRuns/iAC-NikeRuns/activities-11.json
 astra.db:
   id:
-  region: us-east1
-  keyspace: mynikeruns
+  region:
+  keyspace:
   application.token:
 
