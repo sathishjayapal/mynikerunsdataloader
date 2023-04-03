@@ -1,5 +1,8 @@
 package me.sathish.nikerundataload.loader;
 
+import me.sathish.nikerundataload.loader.jpa.NikeRunsDataDTO;
+import me.sathish.nikerundataload.loader.service.NikeRunApiService;
+import org.junit.Assert;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,7 +16,13 @@ class NikeRunApiServiceTest {
     NikeRunApiService nikeRunApiService;
 
     @Test
-    void saveNikeRunApi() {
+    void testSaveNikeRunApi() {
         nikeRunApiService.SaveNikeRunApi();
+    }
+
+    @Test
+    void testGetPaginatedNikeRunsData() {
+        NikeRunsDataDTO nikeRunsDBDataList = nikeRunApiService.getPaginatedNikeRunsData(1);
+        Assert.assertTrue(nikeRunsDBDataList.getData().size() <= 10);
     }
 }

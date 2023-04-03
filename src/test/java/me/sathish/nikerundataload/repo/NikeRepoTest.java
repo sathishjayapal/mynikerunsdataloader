@@ -1,7 +1,7 @@
 package me.sathish.nikerundataload.repo;
 
-import me.sathish.nikerundataload.loader.NikeRunsData;
-import me.sathish.nikerundataload.loader.NikeRunsRepo;
+import me.sathish.nikerundataload.loader.cassandra.NikeRunsQueryData;
+import me.sathish.nikerundataload.loader.cassandra.NikeRunsReadRepo;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,15 +14,15 @@ import java.util.List;
 @DataCassandraTest
 public class NikeRepoTest {
     @Autowired
-    private NikeRunsRepo nikeRunsRepo;
+    private NikeRunsReadRepo nikeRunsRepo;
     @Test
     public void testFindAll(){
-        List<NikeRunsData> nikeRunsDataList= nikeRunsRepo.findAll();
+        List<NikeRunsQueryData> nikeRunsDataList = nikeRunsRepo.findAll();
         assert nikeRunsDataList.size()>0;
     }
     @Test
     public void saveOneRecord(){
-        NikeRunsData runsData= new NikeRunsData();
+        NikeRunsQueryData runsData = new NikeRunsQueryData();
         runsData.setId(1L);
         runsData.setName("74f017af-83b1-41fd-92f2-095bb130f8e3");
         nikeRunsRepo.save(runsData);

@@ -1,5 +1,6 @@
-package me.sathish.nikerundataload.loader;
+package me.sathish.nikerundataload.loader.parser;
 
+import me.sathish.nikerundataload.loader.jpa.NikeRunsDBData;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.context.properties.ConfigurationProperties;
@@ -10,11 +11,8 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
-import java.util.random.RandomGenerator;
+import java.util.*;
+import java.util.function.Consumer;
 
 @Component
 @ConfigurationProperties(prefix = "nikerun")//yml file constains nrefix value
@@ -35,13 +33,28 @@ public class NikeActivityParser {
         Optional<String> fileReadString = readFromFile();
         JacksonJsonParser jsonArray = new JacksonJsonParser();
         String parsedStr = fileReadString.orElseThrow();
+        Consumer<String> action = x -> System.out.println(x.toLowerCase());
         List jsonList = new ArrayList();
         ((List) jsonArray.parseMap(parsedStr).get("activities")).stream().forEach(data -> {
-            NikeRunsData runsData = new NikeRunsData();
-            runsData.setId(RandomGenerator.getDefault().nextLong());
+            NikeRunsDBData runsData = new NikeRunsDBData();
             runsData.setName((String) ((Map) data).get("id"));
             runsData.setStart_time((Long) ((Map) data).get("start_epoch_ms"));
             runsData.setEnd_time((Long) ((Map) data).get("end_epoch_ms"));
+            runsData.setActiveDurationMS((Integer) ((Map) data).get("active_duration_ms"));
+            List summaries = new ArrayList((ArrayList) ((Map) data).get("summaries"));
+            //TODO fix this
+            for (int i = 0; i < summaries.size(); i++) {
+                if (((LinkedHashMap) summaries.get(i)).get("metric").equals("steps"))
+                    runsData.setTotalSteps((Integer) ((LinkedHashMap) summaries.get(i)).get("value"));
+                else if (((LinkedHashMap) summaries.get(i)).get("metric").equals("distance"))
+                    runsData.setTotalDistance((Double) ((LinkedHashMap) summaries.get(i)).get("value"));
+                else if (((LinkedHashMap) summaries.get(i)).get("metric").equals("pace"))
+                    runsData.setAveragePace((Double) ((LinkedHashMap) summaries.get(i)).get("value"));
+                else if (((LinkedHashMap) summaries.get(i)).get("metric").equals("heart_rate"))
+                    runsData.setAverageHeartRate((Double) ((LinkedHashMap) summaries.get(i)).get("value"));
+                else if (((LinkedHashMap) summaries.get(i)).get("metric").equals("calories"))
+                    runsData.setTotalCalories((Double) ((LinkedHashMap) summaries.get(i)).get("value"));
+            }
             jsonList.add(runsData);
         });
         return jsonList;
