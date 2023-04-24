@@ -36,6 +36,6 @@ class NikeRunsStorageUtilTest {
     @Test
     void makeResume() {
         nikeRunsStorageUtil.listDocuments(null);
-        Assertions.assertTrue(1 == 1);
+        Assertions.assertEquals(1, 1);
     }
 }

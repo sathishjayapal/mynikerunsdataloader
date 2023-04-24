@@ -22,7 +22,7 @@ class NikeRunApiServiceTest {
 
     @Test
     void testGetPaginatedNikeRunsData() {
-        NikeRunsDataDTO nikeRunsDBDataList = nikeRunApiService.getPaginatedNikeRunsData(1);
+        NikeRunsDataDTO nikeRunsDBDataList = nikeRunApiService.getPaginatedNikeRunsData(1, 10);
         Assert.assertTrue(nikeRunsDBDataList.getData().size() <= 10);
     }
 }

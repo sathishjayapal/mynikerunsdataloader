@@ -164,14 +164,18 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 @org.springframework.web.bind.annotation.RestController
 @org.springframework.web.bind.annotation.RequestMapping("/api")
 @RequiredArgsConstructor
 @Slf4j
-class RunDataContoller {
-    private static final Logger logger = LoggerFactory.getLogger(RunDataContoller.class);
+class RunDataController {
+    private static final Logger logger = LoggerFactory.getLogger(RunDataController.class);
 
-
+    @RequestMapping("/")
+    public String helloThere() {
+        return "Hello there";
+    }
 
 }

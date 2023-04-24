@@ -1,8 +1,8 @@
 package me.sathish.nikerundataload.loader.cassandra;
 
-import org.springframework.data.cassandra.repository.CassandraRepository;
-import org.springframework.stereotype.Repository;
+//import org.springframework.data.cassandra.repository.CassandraRepository;
 
-@Repository
-public interface NikeRunsReadRepo extends CassandraRepository<NikeRunsQueryData, String> {
+//@Repository
+public interface NikeRunsReadRepo {
+//        extends CassandraRepository<NikeRunsQueryData, String> {
 }

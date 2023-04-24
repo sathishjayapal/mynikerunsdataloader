@@ -1,4 +1,4 @@
-package me.sathish.nikerundataload.loader.parser;
+package me.sathish.nikerundataload.loader.util;
 
 import me.sathish.nikerundataload.loader.jpa.NikeRunsDBData;
 import org.slf4j.Logger;

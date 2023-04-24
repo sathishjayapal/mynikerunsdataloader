@@ -1,6 +1,6 @@
 package me.sathish.nikerundataload.loader;
 
-import me.sathish.nikerundataload.loader.parser.NikeActivityParser;
+import me.sathish.nikerundataload.loader.util.NikeActivityParser;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;

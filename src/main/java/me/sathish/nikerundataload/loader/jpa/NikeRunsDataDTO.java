@@ -15,6 +15,6 @@ public class NikeRunsDataDTO {
     boolean isFirst;
     boolean hasNext;
     boolean hasPrevious;
-    private List<NikeRunsDBData> data;
+    private List<NikeRunsDBDataDTO> data;
 
 }
